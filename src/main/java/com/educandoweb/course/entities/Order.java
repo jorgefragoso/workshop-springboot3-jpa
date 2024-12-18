@@ -90,6 +90,14 @@ public class Order implements Serializable {
 		return items;
 	}
 	
+	public Set<Order> getOrders() {
+		Set<Order> set = new HashSet<>();
+		for(OrderItem x : items) {
+			set.add(x.getOrder());
+		}
+		return set;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
