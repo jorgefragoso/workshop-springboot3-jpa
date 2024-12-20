@@ -47,9 +47,12 @@ public class UserService {
 
 	@Transactional
 	public User update(Long id, User obj) {
+		try {
 		User entity = repository.getReferenceById(id);
 		updateData(entity, obj);
 		return repository.save(entity);
+		} catch (RuntimeException e) {
+		} throw new ResourceNotFoundException(id);
 	}
 
 	private void updateData(User entity, User obj) {
